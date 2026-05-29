@@ -33,7 +33,7 @@ export default function FlavoursPage() {
         subtitle="Handcrafted with seasonal ingredients and rotated monthly. Check back often — something new is always baking."
       />
 
-      <MarqueeSection />
+      <MarqueeSection text="Fresh Cakes" />
 
       <InStoreSection items={instoreItems} />
 

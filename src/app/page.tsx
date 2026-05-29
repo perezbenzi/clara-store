@@ -18,7 +18,7 @@ export default function Home() {
         <Button href="/flavours">Order Now</Button>
       </div>
 
-      <MarqueeSection />
+      <MarqueeSection text="Fresh Cakes" />
 
       <ProductGrid
         items={previewFlavours}

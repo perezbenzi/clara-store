@@ -1,4 +1,8 @@
-export default function MarqueeSection() {
+interface MarqueeSectionProps {
+  text?: string;
+}
+
+export default function MarqueeSection({ text = "Fresh Cakes" }: MarqueeSectionProps) {
   const items = Array(8).fill(null);
 
   return (
@@ -9,7 +13,7 @@ export default function MarqueeSection() {
             key={i}
             className="flex items-center gap-4 px-4 font-display text-white uppercase text-5xl md:text-6xl whitespace-nowrap"
           >
-            FRESH CAKES
+            {text}
             <span className="text-white/50 text-3xl">·</span>
           </span>
         ))}

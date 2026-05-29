@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import type { Flavour } from "@/lib/types";
 import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
@@ -44,6 +45,9 @@ export default function ProductGrid({
   const fullRowItems = items.slice(0, fullRowCount);
   const lastRowItems = items.slice(fullRowCount);
 
+  const ref = useRef<HTMLDivElement>(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+
   return (
     <section className="py-16 px-6 max-w-7xl mx-auto">
       {/* Header */}
@@ -60,12 +64,19 @@ export default function ProductGrid({
       </div>
 
       {/* Grid */}
-      <div className="space-y-6 mt-12">
+      <div ref={ref} className="space-y-6 mt-12">
         {/* Full rows */}
         {fullRowItems.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {fullRowItems.map((item) => (
-              <ProductCard key={item.id} item={item} />
+            {fullRowItems.map((item, i) => (
+              <motion.div
+                key={item.id}
+                initial={{ opacity: 0, x: -40 }}
+                animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
+                transition={{ duration: 0.5, delay: i * 0.1, ease: "easeOut" }}
+              >
+                <ProductCard item={item} />
+              </motion.div>
             ))}
           </div>
         )}
@@ -73,13 +84,20 @@ export default function ProductGrid({
         {/* Last partial row — centered */}
         {lastRowItems.length > 0 && (
           <div className="flex justify-center gap-6">
-            {lastRowItems.map((item) => (
-              <div
+            {lastRowItems.map((item, i) => (
+              <motion.div
                 key={item.id}
                 className="w-full md:w-[calc(33.333%-0.75rem)]"
+                initial={{ opacity: 0, x: -40 }}
+                animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
+                transition={{
+                  duration: 0.5,
+                  delay: (fullRowItems.length + i) * 0.1,
+                  ease: "easeOut",
+                }}
               >
                 <ProductCard item={item} />
-              </div>
+              </motion.div>
             ))}
           </div>
         )}

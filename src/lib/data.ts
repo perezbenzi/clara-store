@@ -1,11 +1,11 @@
-import type { Flavour, InStoreItem, ContactCard, FaqItem, NavLink } from "./types";
+import type { Flavour, InStoreItem, ContactCard, FaqItem, NavLink, AboutValue, TeamMember } from "./types";
 
 export const navLinks: NavLink[] = [
-  { label: "Click & Collect", href: "/" },
+  { label: "Click & Collect", href: "/order" },
   { label: "Flavours", href: "/flavours" },
-  { label: "Our Stores", href: "/" },
-  { label: "Gift Cards", href: "/" },
-  { label: "About", href: "/" },
+  { label: "Our Stores", href: "/stores" },
+  { label: "Gift Cards", href: "/gift-cards" },
+  { label: "About", href: "/about" },
 ];
 
 export const flavours: Flavour[] = [
@@ -111,5 +111,41 @@ export const wholesaleFaqs: FaqItem[] = [
     question: "Do you switch up wholesale flavours?",
     answer:
       "Our wholesale range includes a selection of core flavours available year-round, plus seasonal specials. We give wholesale partners advance notice of any menu changes.",
+  },
+];
+
+export const aboutValues: AboutValue[] = [
+  {
+    number: "01",
+    title: "Scratch only",
+    body: "No mixes, no shortcuts. Every cake starts with real butter, real eggs, and real effort.",
+  },
+  {
+    number: "02",
+    title: "Seasonal always",
+    body: "Our menu rotates with the seasons. We work with local suppliers to source the best ingredients.",
+  },
+  {
+    number: "03",
+    title: "Community first",
+    body: "We're a Sydney business, through and through. We support local growers, hire locally, and give back.",
+  },
+];
+
+export const teamMembers: TeamMember[] = [
+  {
+    name: "Clara Nguyen",
+    role: "Founder & Head Baker",
+    imagePlaceholder: "#D4C4A8",
+  },
+  {
+    name: "James Okafor",
+    role: "Pastry Chef",
+    imagePlaceholder: "#C8B89C",
+  },
+  {
+    name: "Sophie Martin",
+    role: "Store Manager",
+    imagePlaceholder: "#D4B896",
   },
 ];

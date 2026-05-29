@@ -27,3 +27,15 @@ export interface NavLink {
   label: string;
   href: string;
 }
+
+export interface AboutValue {
+  number: string;
+  title: string;
+  body: string;
+}
+
+export interface TeamMember {
+  name: string;
+  role: string;
+  imagePlaceholder: string;
+}
