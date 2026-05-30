@@ -3,6 +3,14 @@ export interface Flavour {
   name: string;
   tag: string | null;
   imagePlaceholder: string;
+  price: number;
+  description: string;
+}
+
+export interface HowItWorksStep {
+  number: string;
+  title: string;
+  body: string;
 }
 
 export interface InStoreItem {
@@ -38,4 +46,18 @@ export interface TeamMember {
   name: string;
   role: string;
   imagePlaceholder: string;
+}
+
+export interface Store {
+  id: number;
+  name: string;
+  address: string;
+  googleMapsUrl: string;
+  imagePlaceholder: string;
+}
+
+export interface OpeningSoonData {
+  suburb: string;
+  year: string;
+  tag: string;
 }

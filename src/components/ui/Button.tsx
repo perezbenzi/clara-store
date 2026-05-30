@@ -21,7 +21,7 @@ export default function Button({
   const variants = {
     primary: "bg-ink text-white hover:bg-[#333333]",
     "outline-white":
-      "bg-white text-ink hover:bg-white/90",
+      "bg-transparent border border-white text-white hover:bg-white/10",
   };
 
   const classes = `${base} ${variants[variant]} ${className}`;

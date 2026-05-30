@@ -5,6 +5,7 @@ import { motion, useInView } from "framer-motion";
 import type { Flavour } from "@/lib/types";
 import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
+import { useCart } from "@/context/CartContext";
 
 interface ProductGridProps {
   items: Flavour[];
@@ -15,17 +16,41 @@ interface ProductGridProps {
 }
 
 function ProductCard({ item }: { item: Flavour }) {
+  const { addItem } = useCart();
+
   return (
     <div>
-      <div className="relative w-full aspect-square overflow-hidden">
+      <motion.div
+        className="relative w-full aspect-square overflow-hidden"
+        initial="rest"
+        whileHover="hover"
+        animate="rest"
+      >
         <motion.div
           className="w-full h-full"
-          whileHover={{ scale: 1.03 }}
+          variants={{ rest: { scale: 1 }, hover: { scale: 1.03 } }}
           transition={{ duration: 0.2 }}
           style={{ backgroundColor: item.imagePlaceholder }}
         />
         {item.tag && <Badge label={item.tag} />}
-      </div>
+        <motion.button
+          className="absolute bottom-0 left-0 right-0 bg-ink text-white text-[10px] uppercase tracking-widest py-2.5 text-center"
+          variants={{ rest: { opacity: 0 }, hover: { opacity: 1 } }}
+          transition={{ duration: 0.15 }}
+          onClick={() =>
+            addItem({
+              id: item.id,
+              name: item.name,
+              tag: item.tag,
+              imagePlaceholder: item.imagePlaceholder,
+              variant: "Whole Cake · 20cm",
+              price: 68,
+            })
+          }
+        >
+          Add to Cart
+        </motion.button>
+      </motion.div>
       <p className="font-display uppercase text-ink mt-3 text-base md:text-lg">
         {item.name}
       </p>

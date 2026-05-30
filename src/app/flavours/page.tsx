@@ -3,7 +3,8 @@ import ProductGrid from "@/components/sections/ProductGrid";
 import MarqueeSection from "@/components/sections/MarqueeSection";
 import InStoreSection from "@/components/sections/InStoreSection";
 import Footer from "@/components/layout/Footer";
-import { flavours, instoreItems } from "@/lib/data";
+import { instoreItems } from "@/lib/data";
+import { getFlavours } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: "Flavours",
@@ -11,7 +12,10 @@ export const metadata: Metadata = {
     "Explore Clara's Bakehouse monthly specials — handcrafted cakes rotating with the seasons.",
 };
 
-export default function FlavoursPage() {
+export const revalidate = 3600;
+
+export default async function FlavoursPage() {
+  const flavours = await getFlavours();
   return (
     <>
       {/* Page header */}

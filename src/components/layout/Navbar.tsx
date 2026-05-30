@@ -4,14 +4,14 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
-import { Menu, X, ChevronRight, ShoppingCart } from "lucide-react";
+import { Menu, X, ShoppingCart } from "lucide-react";
 import { navLinks } from "@/lib/data";
-
-const CART_COUNT = 0;
+import { useCart } from "@/context/CartContext";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
+  const { totalItems } = useCart();
 
   return (
     <>
@@ -41,11 +41,11 @@ export default function Navbar() {
             ))}
             <li>
               <Link
-                href="/"
+                href="/cart"
                 className="font-body font-medium text-sm text-ink flex items-center gap-1"
               >
                 <ShoppingCart className="w-4 h-4" />
-                <span>Cart ({CART_COUNT})</span>
+                <span>Cart ({totalItems})</span>
               </Link>
             </li>
           </ul>
@@ -57,7 +57,7 @@ export default function Navbar() {
             aria-label="Open menu"
           >
             <Menu className="w-6 h-6" />
-            <span className="text-sm font-medium">({CART_COUNT})</span>
+            <span className="text-sm font-medium">({totalItems})</span>
           </button>
 
           {/* Mobile: logo right */}
@@ -81,14 +81,14 @@ export default function Navbar() {
             transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
           >
             {/* Top bar */}
-            <div className="flex items-center justify-between mb-12">
+            <div className="flex items-center justify-between">
               <button
                 onClick={() => setMobileOpen(false)}
                 className="flex items-center gap-2 text-white"
                 aria-label="Close menu"
               >
                 <X className="w-6 h-6" />
-                <span className="text-sm font-medium">({CART_COUNT})</span>
+                <span className="text-sm font-medium">({totalItems})</span>
               </button>
               <Link
                 href="/"
@@ -99,27 +99,22 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* Links */}
-            <ul className="flex flex-col gap-6">
-              {navLinks.map((link, i) => {
-                const isLast = i === navLinks.length - 1;
-                return (
-                  <li
-                    key={link.label}
-                    className={isLast ? "border-b border-white/30 pb-6" : ""}
-                  >
+            {/* Links — vertically centered in remaining space */}
+            <div className="flex-1 flex flex-col justify-center">
+              <ul className="flex flex-col gap-8">
+                {navLinks.map((link) => (
+                  <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="flex items-center justify-between text-white font-body font-semibold text-[32px] leading-none"
+                      className="text-white font-body font-semibold text-[32px] leading-none"
                       onClick={() => setMobileOpen(false)}
                     >
                       {link.label}
-                      {isLast && <ChevronRight className="w-6 h-6" />}
                     </Link>
                   </li>
-                );
-              })}
-            </ul>
+                ))}
+              </ul>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

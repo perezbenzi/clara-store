@@ -1,19 +1,25 @@
-import type { Flavour, InStoreItem, ContactCard, FaqItem, NavLink, AboutValue, TeamMember } from "./types";
+import type { Flavour, InStoreItem, ContactCard, FaqItem, NavLink, AboutValue, TeamMember, Store, OpeningSoonData, HowItWorksStep } from "./types";
 
 export const navLinks: NavLink[] = [
   { label: "Click & Collect", href: "/order" },
   { label: "Flavours", href: "/flavours" },
   { label: "Our Stores", href: "/stores" },
-  { label: "Gift Cards", href: "/gift-cards" },
   { label: "About", href: "/about" },
 ];
 
 export const flavours: Flavour[] = [
-  { id: 1, name: "Raspberry & Rose", tag: null, imagePlaceholder: "#C8A882" },
-  { id: 2, name: "Matcha Yuzu", tag: "GF", imagePlaceholder: "#B8C4A0" },
-  { id: 3, name: "Choc Hazelnut", tag: null, imagePlaceholder: "#D4B896" },
-  { id: 4, name: "Banana Caramel", tag: null, imagePlaceholder: "#E8D4B8" },
-  { id: 5, name: "Lavender Earl Grey", tag: null, imagePlaceholder: "#C4B8D4" },
+  { id: 1, name: "Raspberry & Rose", tag: null, imagePlaceholder: "#C8A882", price: 68, description: "Vanilla sponge, raspberry jam, rose buttercream." },
+  { id: 2, name: "Matcha Yuzu", tag: "GF", imagePlaceholder: "#B8C4A0", price: 72, description: "Matcha cake, yuzu curd, white chocolate ganache." },
+  { id: 3, name: "Choc Hazelnut", tag: null, imagePlaceholder: "#D4B896", price: 68, description: "Dark chocolate sponge, praline cream, hazelnut crunch." },
+  { id: 4, name: "Banana Caramel", tag: null, imagePlaceholder: "#E8D4B8", price: 65, description: "Banana cake, salted caramel, whipped cream cheese." },
+  { id: 5, name: "Lavender Earl Grey", tag: null, imagePlaceholder: "#C4B8D4", price: 70, description: "Earl grey sponge, lavender honey buttercream, lemon curd." },
+];
+
+export const howItWorks: HowItWorksStep[] = [
+  { number: "01", title: "Choose your cake", body: "Browse our current flavours and pick the one that's calling your name." },
+  { number: "02", title: "Select a size", body: "We offer 15cm (feeds 8) and 20cm (feeds 14) for whole cakes." },
+  { number: "03", title: "Pick a date", body: "Choose your preferred collection day. Orders need 48 hours notice." },
+  { number: "04", title: "Collect in store", body: "Your cake will be boxed and waiting at your chosen location." },
 ];
 
 export const instoreItems: InStoreItem[] = [
@@ -149,3 +155,36 @@ export const teamMembers: TeamMember[] = [
     imagePlaceholder: "#D4B896",
   },
 ];
+
+export const stores: Store[] = [
+  {
+    id: 0,
+    name: "Byron Bay",
+    address: "12 Jonson Street, Byron Bay NSW 2481",
+    googleMapsUrl:
+      "https://maps.google.com/?q=12+Jonson+Street+Byron+Bay+NSW+2481",
+    imagePlaceholder: "#C8B89C",
+  },
+  {
+    id: 1,
+    name: "Bangalow",
+    address: "24 Byron Street, Bangalow NSW 2479",
+    googleMapsUrl:
+      "https://maps.google.com/?q=24+Byron+Street+Bangalow+NSW+2479",
+    imagePlaceholder: "#B8C4A0",
+  },
+  {
+    id: 2,
+    name: "Brunswick Heads",
+    address: "8 Mullumbimbi Street, Brunswick Heads NSW 2483",
+    googleMapsUrl:
+      "https://maps.google.com/?q=8+Mullumbimbi+Street+Brunswick+Heads+NSW+2483",
+    imagePlaceholder: "#D4C4A8",
+  },
+];
+
+export const openingSoon: OpeningSoonData = {
+  suburb: "Mullumbimby",
+  year: "2025",
+  tag: "Opening late 2025",
+};

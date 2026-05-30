@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Anton, Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
+import { CartProvider } from "@/context/CartContext";
+import NavigationLoader from "@/components/ui/NavigationLoader";
+import ScrollToTop from "@/components/ui/ScrollToTop";
 
 const anton = Anton({
   weight: "400",
@@ -37,8 +40,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${anton.variable} ${inter.variable}`}>
       <body className="bg-cream text-ink font-body">
-        <Navbar />
-        <main>{children}</main>
+        <CartProvider>
+          <NavigationLoader />
+          <ScrollToTop />
+          <Navbar />
+          <main>{children}</main>
+        </CartProvider>
       </body>
     </html>
   );
