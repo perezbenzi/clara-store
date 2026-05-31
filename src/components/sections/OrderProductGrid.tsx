@@ -28,6 +28,7 @@ function OrderCard({
       id: flavour.id,
       name: flavour.name,
       tag: flavour.tag,
+      imageUrl: flavour.imageUrl,
       imagePlaceholder: flavour.imagePlaceholder,
       variant: VARIANT,
       price: flavour.price,
@@ -43,10 +44,13 @@ function OrderCard({
       transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
       className="bg-white"
     >
-      <div
-        className="w-full aspect-square"
-        style={{ backgroundColor: flavour.imagePlaceholder }}
-      />
+      <div className="w-full aspect-square overflow-hidden">
+        {flavour.imageUrl ? (
+          <img src={flavour.imageUrl} alt={flavour.name} className="w-full h-full object-cover" />
+        ) : (
+          <div className="w-full h-full" style={{ backgroundColor: flavour.imagePlaceholder }} />
+        )}
+      </div>
       <div className="px-3 pt-3 pb-3 md:p-5">
         <div className="flex items-start justify-between gap-2 mb-1">
           <p className="font-display text-[16px] md:text-[20px] uppercase text-ink leading-none">

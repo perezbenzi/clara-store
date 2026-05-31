@@ -8,11 +8,11 @@ export const navLinks: NavLink[] = [
 ];
 
 export const flavours: Flavour[] = [
-  { id: 1, name: "Raspberry & Rose", tag: null, imagePlaceholder: "#C8A882", price: 68, description: "Vanilla sponge, raspberry jam, rose buttercream." },
-  { id: 2, name: "Matcha Yuzu", tag: "GF", imagePlaceholder: "#B8C4A0", price: 72, description: "Matcha cake, yuzu curd, white chocolate ganache." },
-  { id: 3, name: "Choc Hazelnut", tag: null, imagePlaceholder: "#D4B896", price: 68, description: "Dark chocolate sponge, praline cream, hazelnut crunch." },
-  { id: 4, name: "Banana Caramel", tag: null, imagePlaceholder: "#E8D4B8", price: 65, description: "Banana cake, salted caramel, whipped cream cheese." },
-  { id: 5, name: "Lavender Earl Grey", tag: null, imagePlaceholder: "#C4B8D4", price: 70, description: "Earl grey sponge, lavender honey buttercream, lemon curd." },
+  { id: 1, name: "Raspberry & Rose", tag: null, imageUrl: null, imagePlaceholder: "#C8A882", price: 68, description: "Vanilla sponge, raspberry jam, rose buttercream." },
+  { id: 2, name: "Matcha Yuzu", tag: "GF", imageUrl: null, imagePlaceholder: "#B8C4A0", price: 72, description: "Matcha cake, yuzu curd, white chocolate ganache." },
+  { id: 3, name: "Choc Hazelnut", tag: null, imageUrl: null, imagePlaceholder: "#D4B896", price: 68, description: "Dark chocolate sponge, praline cream, hazelnut crunch." },
+  { id: 4, name: "Banana Caramel", tag: null, imageUrl: null, imagePlaceholder: "#E8D4B8", price: 65, description: "Banana cake, salted caramel, whipped cream cheese." },
+  { id: 5, name: "Lavender Earl Grey", tag: null, imageUrl: null, imagePlaceholder: "#C4B8D4", price: 70, description: "Earl grey sponge, lavender honey buttercream, lemon curd." },
 ];
 
 export const howItWorks: HowItWorksStep[] = [
@@ -25,19 +25,19 @@ export const howItWorks: HowItWorksStep[] = [
 export const instoreItems: InStoreItem[] = [
   {
     name: "Whole Cakes",
-    locations: "Manly · Chatswood · Broadway",
+    locations: "Byron Bay · Bangalow · Brunswick Heads",
     description: "Made fresh daily. Available whole or by the slice.",
     imagePlaceholder: "#D4C4A8",
   },
   {
     name: "Cake Jars",
-    locations: "Manly · Chatswood · Broadway",
+    locations: "Byron Bay · Bangalow · Brunswick Heads",
     description: "Layered mini cakes in a jar. Gift-ready.",
     imagePlaceholder: "#C8B89C",
   },
   {
     name: "Cake Boxes",
-    locations: "Manly · Chatswood · Broadway",
+    locations: "Byron Bay · Bangalow · Brunswick Heads",
     description: "A mixed selection of our freshest slices.",
     imagePlaceholder: "#BCA888",
   },
@@ -68,7 +68,7 @@ export const retailFaqs: FaqItem[] = [
   {
     question: "Do you deliver?",
     answer:
-      "Yes! We offer local delivery to Sydney metro areas. Orders must be placed at least 48 hours in advance. Delivery fees vary by distance.",
+      "Yes! We offer local delivery within the Byron Bay and Northern Rivers region. Orders must be placed at least 48 hours in advance. Delivery fees vary by distance.",
   },
   {
     question: "What flavours do you have?",
@@ -101,7 +101,7 @@ export const wholesaleFaqs: FaqItem[] = [
   {
     question: "Do you wholesale?",
     answer:
-      "Yes, Clara's Bakehouse offers wholesale arrangements for cafes, restaurants and specialty retailers across Sydney.",
+      "Yes, Clara's Bakehouse offers wholesale arrangements for cafes, restaurants and specialty retailers across Northern NSW.",
   },
   {
     question: "How can I stock Clara's Bakehouse?",
@@ -185,6 +185,6 @@ export const stores: Store[] = [
 
 export const openingSoon: OpeningSoonData = {
   suburb: "Mullumbimby",
-  year: "2025",
-  tag: "Opening late 2025",
+  year: "2026",
+  tag: "Opening mid 2026",
 };

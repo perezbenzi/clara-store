@@ -27,11 +27,15 @@ function ProductCard({ item }: { item: Flavour }) {
         animate="rest"
       >
         <motion.div
-          className="w-full h-full"
+          className="w-full h-full overflow-hidden"
           variants={{ rest: { scale: 1 }, hover: { scale: 1.03 } }}
           transition={{ duration: 0.2 }}
-          style={{ backgroundColor: item.imagePlaceholder }}
-        />
+          style={!item.imageUrl ? { backgroundColor: item.imagePlaceholder } : undefined}
+        >
+          {item.imageUrl && (
+            <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover" />
+          )}
+        </motion.div>
         {item.tag && <Badge label={item.tag} />}
         <motion.button
           className="absolute bottom-0 left-0 right-0 bg-ink text-white text-[10px] uppercase tracking-widest py-2.5 text-center"
@@ -42,9 +46,10 @@ function ProductCard({ item }: { item: Flavour }) {
               id: item.id,
               name: item.name,
               tag: item.tag,
+              imageUrl: item.imageUrl,
               imagePlaceholder: item.imagePlaceholder,
               variant: "Whole Cake · 20cm",
-              price: 68,
+              price: item.price,
             })
           }
         >

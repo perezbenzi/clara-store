@@ -19,12 +19,12 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Clara's Bakehouse — Premium Cakes Sydney",
+    default: "Clara's Bakehouse — Premium Cakes Byron Bay",
     template: "%s | Clara's Bakehouse",
   },
   description:
-    "Sydney's finest premium cake bakery. Handcrafted cakes made fresh every day in Manly, Chatswood & Broadway.",
-  keywords: ["bakery", "cakes", "Sydney", "premium", "fresh"],
+    "Northern NSW's finest premium cake bakery. Handcrafted cakes made fresh every day in Byron Bay, Bangalow & Brunswick Heads.",
+  keywords: ["bakery", "cakes", "Byron Bay", "Northern NSW", "premium", "fresh"],
   openGraph: {
     siteName: "Clara's Bakehouse",
     locale: "en_AU",

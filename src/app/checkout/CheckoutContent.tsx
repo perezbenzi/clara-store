@@ -258,10 +258,13 @@ export default function CheckoutContent() {
                       key={`${item.id}-${item.variant}`}
                       className="grid grid-cols-[44px_1fr_auto] gap-3 items-center py-3 border-b border-[#e0ddd6]"
                     >
-                      <div
-                        className="w-11 h-11"
-                        style={{ backgroundColor: item.imagePlaceholder }}
-                      />
+                      <div className="w-11 h-11 overflow-hidden flex-shrink-0">
+                        {item.imageUrl ? (
+                          <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover" />
+                        ) : (
+                          <div className="w-full h-full" style={{ backgroundColor: item.imagePlaceholder }} />
+                        )}
+                      </div>
                       <div>
                         <p className="font-display text-[13px] uppercase text-ink leading-none mb-0.5">
                           {item.name}

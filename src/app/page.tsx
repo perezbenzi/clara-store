@@ -4,10 +4,13 @@ import ProductGrid from "@/components/sections/ProductGrid";
 import InStoreSection from "@/components/sections/InStoreSection";
 import Footer from "@/components/layout/Footer";
 import Button from "@/components/ui/Button";
-import { flavours, instoreItems } from "@/lib/data";
+import { instoreItems } from "@/lib/data";
+import { getFlavours } from "@/lib/db";
 
-export default function Home() {
-  const previewFlavours = flavours.slice(0, 3);
+export const revalidate = 3600;
+
+export default async function Home() {
+  const previewFlavours = (await getFlavours()).slice(0, 3);
 
   return (
     <>

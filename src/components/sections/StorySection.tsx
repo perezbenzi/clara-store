@@ -90,7 +90,7 @@ export default function StorySection() {
       <StoryBlock
         label="Where we are now"
         heading="Three stores. One standard. No shortcuts."
-        body="Today we run three stores across Sydney — Manly, Chatswood, and Broadway. Every cake is still made from scratch, every day. We haven't changed the recipe, and we don't plan to."
+        body="Today we run three stores across Northern NSW — Byron Bay, Bangalow, and Brunswick Heads. Every cake is still made from scratch, every day. We haven't changed the recipe, and we don't plan to."
         imageBg="#B8C4A0"
         imageLeft={false}
       />

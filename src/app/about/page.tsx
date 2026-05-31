@@ -11,7 +11,7 @@ import { aboutValues, teamMembers } from "@/lib/data";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "The story behind Clara's Bakehouse — a Sydney bakery built on scratch baking, seasonal ingredients, and community.",
+    "The story behind Clara's Bakehouse — a Northern NSW bakery built on scratch baking, seasonal ingredients, and community.",
 };
 
 export default function AboutPage() {

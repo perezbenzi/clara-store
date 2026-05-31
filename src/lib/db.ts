@@ -20,7 +20,8 @@ export async function getFlavours(): Promise<Flavour[]> {
     id: row.id,
     name: row.name,
     tag: row.tag ?? null,
-    imagePlaceholder: row.image_url ?? "#C8A882",
+    imageUrl: row.image_url ?? null,
+    imagePlaceholder: "#C8A882",
     price: Number(row.price),
     description: row.description ?? "",
   }));

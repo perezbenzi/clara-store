@@ -2,6 +2,7 @@ export interface Flavour {
   id: number;
   name: string;
   tag: string | null;
+  imageUrl: string | null;
   imagePlaceholder: string;
   price: number;
   description: string;
