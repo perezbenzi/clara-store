@@ -2,20 +2,20 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import type { Flavour } from "@/lib/types";
+import type { Product } from "@/lib/types";
 import Badge from "@/components/ui/Badge";
 import Button from "@/components/ui/Button";
 import { useCart } from "@/context/CartContext";
 
 interface ProductGridProps {
-  items: Flavour[];
+  items: Product[];
   ctaLabel?: string;
   ctaHref?: string;
   title?: string | null;
   subtitle?: string;
 }
 
-function ProductCard({ item }: { item: Flavour }) {
+function ProductCard({ item }: { item: Product }) {
   const { addItem } = useCart();
 
   return (

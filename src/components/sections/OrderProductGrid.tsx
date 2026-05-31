@@ -2,21 +2,21 @@
 
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import type { Flavour } from "@/lib/types";
+import type { Product } from "@/lib/types";
 import { useCart } from "@/context/CartContext";
 
 interface OrderProductGridProps {
-  flavours: Flavour[];
+  products: Product[];
 }
 
 const VARIANT = "Whole Cake · 20cm";
 
 function OrderCard({
-  flavour,
+  product,
   index,
   inView,
 }: {
-  flavour: Flavour;
+  product: Product;
   index: number;
   inView: boolean;
 }) {
@@ -25,13 +25,13 @@ function OrderCard({
 
   function handleAdd() {
     addItem({
-      id: flavour.id,
-      name: flavour.name,
-      tag: flavour.tag,
-      imageUrl: flavour.imageUrl,
-      imagePlaceholder: flavour.imagePlaceholder,
+      id: product.id,
+      name: product.name,
+      tag: product.tag,
+      imageUrl: product.imageUrl,
+      imagePlaceholder: product.imagePlaceholder,
       variant: VARIANT,
-      price: flavour.price,
+      price: product.price,
     });
     setAdded(true);
     setTimeout(() => setAdded(false), 1500);
@@ -45,29 +45,29 @@ function OrderCard({
       className="bg-white"
     >
       <div className="w-full aspect-square overflow-hidden">
-        {flavour.imageUrl ? (
-          <img src={flavour.imageUrl} alt={flavour.name} className="w-full h-full object-cover" />
+        {product.imageUrl ? (
+          <img src={product.imageUrl} alt={product.name} className="w-full h-full object-cover" />
         ) : (
-          <div className="w-full h-full" style={{ backgroundColor: flavour.imagePlaceholder }} />
+          <div className="w-full h-full" style={{ backgroundColor: product.imagePlaceholder }} />
         )}
       </div>
       <div className="px-3 pt-3 pb-3 md:p-5">
         <div className="flex items-start justify-between gap-2 mb-1">
           <p className="font-display text-[16px] md:text-[20px] uppercase text-ink leading-none">
-            {flavour.name}
+            {product.name}
           </p>
-          {flavour.tag && (
+          {product.tag && (
             <span className="text-[9px] uppercase tracking-widest border border-ink px-1.5 py-0.5 text-ink shrink-0 mt-0.5">
-              {flavour.tag}
+              {product.tag}
             </span>
           )}
         </div>
         <p className="text-[11px] md:text-xs text-muted leading-relaxed mb-3 md:mb-4">
-          {flavour.description}
+          {product.description}
         </p>
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
           <p className="font-display text-[18px] md:text-[22px] text-ink leading-none">
-            ${flavour.price}
+            ${product.price}
           </p>
           <button
             onClick={handleAdd}
@@ -92,7 +92,7 @@ function OrderCard({
   );
 }
 
-export default function OrderProductGrid({ flavours }: OrderProductGridProps) {
+export default function OrderProductGrid({ products }: OrderProductGridProps) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
@@ -103,10 +103,10 @@ export default function OrderProductGrid({ flavours }: OrderProductGridProps) {
           ref={ref}
           className="grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-8"
         >
-          {flavours.map((flavour, i) => (
+          {products.map((product, i) => (
             <OrderCard
-              key={flavour.id}
-              flavour={flavour}
+              key={product.id}
+              product={product}
               index={i}
               inView={inView}
             />

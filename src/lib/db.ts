@@ -1,18 +1,18 @@
 import { supabase } from "./supabase";
-import type { Flavour, InStoreItem, Store, TeamMember } from "./types";
+import type { Product, InStoreItem, Store, TeamMember } from "./types";
 
 const STORE_ID = process.env.STORE_ID!;
 
-export async function getFlavours(): Promise<Flavour[]> {
+export async function getProducts(): Promise<Product[]> {
   const { data, error } = await supabase
-    .from("flavours")
+    .from("products")
     .select("id, name, tag, price, description, image_url")
     .eq("store_id", STORE_ID)
     .eq("active", true)
     .order("sort_order");
 
   if (error) {
-    console.error("[db] getFlavours:", error.message);
+    console.error("[db] getProducts:", error.message);
     return [];
   }
 

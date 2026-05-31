@@ -3,7 +3,7 @@ import OrderProductGrid from "@/components/sections/OrderProductGrid";
 import HowItWorksSection from "@/components/sections/HowItWorksSection";
 import Footer from "@/components/layout/Footer";
 import { howItWorks } from "@/lib/data";
-import { getFlavours } from "@/lib/db";
+import { getProducts } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: "Click & Collect",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export const revalidate = 3600;
 
 export default async function OrderPage() {
-  const flavours = await getFlavours();
+  const products = await getProducts();
   return (
     <>
       {/* Page header */}
@@ -54,7 +54,7 @@ export default async function OrderPage() {
         </div>
       </section>
 
-      <OrderProductGrid flavours={flavours} />
+      <OrderProductGrid products={products} />
 
       <HowItWorksSection steps={howItWorks} />
 

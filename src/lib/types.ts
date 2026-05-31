@@ -1,4 +1,4 @@
-export interface Flavour {
+export interface Product {
   id: number;
   name: string;
   tag: string | null;

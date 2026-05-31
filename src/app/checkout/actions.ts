@@ -3,10 +3,10 @@
 import { supabase } from "@/lib/supabase";
 
 export interface OrderItem {
-  flavour_id: number;
-  flavour_name: string;
+  product_id: number;
+  product_name: string;
   quantity: number;
-  price: number;
+  unit_price: number;
 }
 
 export interface OrderPayload {
@@ -23,21 +23,24 @@ export interface OrderPayload {
 export async function placeOrder(
   payload: OrderPayload
 ): Promise<{ error: string | null }> {
-  const { error } = await supabase.from("orders").insert({
-    store_id: payload.storeId,
-    customer_name: payload.customerName,
-    customer_email: payload.customerEmail,
-    customer_phone: payload.customerPhone,
-    collection_date: payload.collectionDate,
-    notes: payload.notes,
-    items: payload.items,
-    total: payload.total,
+  console.log("[placeOrder] payload:", JSON.stringify(payload, null, 2));
+
+  const { data: orderId, error } = await supabase.rpc("place_order", {
+    p_store_id:        payload.storeId,
+    p_customer_name:   payload.customerName,
+    p_customer_email:  payload.customerEmail,
+    p_customer_phone:  payload.customerPhone,
+    p_collection_date: payload.collectionDate,
+    p_notes:           payload.notes,
+    p_total:           payload.total,
+    p_items:           payload.items,
   });
 
   if (error) {
-    console.error("[placeOrder]", error.message);
+    console.error("[placeOrder] rpc failed:", JSON.stringify(error, null, 2));
     return { error: "Something went wrong placing your order. Please try again." };
   }
 
+  console.log("[placeOrder] success, order id:", orderId);
   return { error: null };
 }

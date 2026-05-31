@@ -77,10 +77,10 @@ export default function CheckoutContent() {
       collectionDate: `${selectedDate.year}-${mm}-${dd}`,
       notes: form.notes.trim() || null,
       items: items.map((item) => ({
-        flavour_id: item.id,
-        flavour_name: item.name,
+        product_id: item.id,
+        product_name: item.name,
         quantity: item.quantity,
-        price: item.price,
+        unit_price: item.price,
       })),
       total: totalPrice,
     });

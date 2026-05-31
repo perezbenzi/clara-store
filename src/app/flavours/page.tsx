@@ -3,7 +3,7 @@ import ProductGrid from "@/components/sections/ProductGrid";
 import MarqueeSection from "@/components/sections/MarqueeSection";
 import InStoreSection from "@/components/sections/InStoreSection";
 import Footer from "@/components/layout/Footer";
-import { getFlavours, getInstoreItems } from "@/lib/db";
+import { getProducts, getInstoreItems } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: "Flavours",
@@ -14,8 +14,8 @@ export const metadata: Metadata = {
 export const revalidate = 3600;
 
 export default async function FlavoursPage() {
-  const [flavours, instoreItems] = await Promise.all([
-    getFlavours(),
+  const [products, instoreItems] = await Promise.all([
+    getProducts(),
     getInstoreItems(),
   ]);
   return (
@@ -32,7 +32,7 @@ export default async function FlavoursPage() {
 
       {/* Pass title={null} since the h1 is handled above */}
       <ProductGrid
-        items={flavours}
+        items={products}
         title={null}
         ctaLabel="Order Now"
         ctaHref="/"
