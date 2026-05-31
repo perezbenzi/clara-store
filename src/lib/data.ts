@@ -1,18 +1,10 @@
-import type { Flavour, InStoreItem, ContactCard, FaqItem, NavLink, AboutValue, TeamMember, Store, OpeningSoonData, HowItWorksStep } from "./types";
+import type { InStoreItem, ContactCard, FaqItem, NavLink, AboutValue, Store, OpeningSoonData, HowItWorksStep } from "./types";
 
 export const navLinks: NavLink[] = [
   { label: "Click & Collect", href: "/order" },
   { label: "Flavours", href: "/flavours" },
   { label: "Our Stores", href: "/stores" },
   { label: "About", href: "/about" },
-];
-
-export const flavours: Flavour[] = [
-  { id: 1, name: "Raspberry & Rose", tag: null, imageUrl: null, imagePlaceholder: "#C8A882", price: 68, description: "Vanilla sponge, raspberry jam, rose buttercream." },
-  { id: 2, name: "Matcha Yuzu", tag: "GF", imageUrl: null, imagePlaceholder: "#B8C4A0", price: 72, description: "Matcha cake, yuzu curd, white chocolate ganache." },
-  { id: 3, name: "Choc Hazelnut", tag: null, imageUrl: null, imagePlaceholder: "#D4B896", price: 68, description: "Dark chocolate sponge, praline cream, hazelnut crunch." },
-  { id: 4, name: "Banana Caramel", tag: null, imageUrl: null, imagePlaceholder: "#E8D4B8", price: 65, description: "Banana cake, salted caramel, whipped cream cheese." },
-  { id: 5, name: "Lavender Earl Grey", tag: null, imageUrl: null, imagePlaceholder: "#C4B8D4", price: 70, description: "Earl grey sponge, lavender honey buttercream, lemon curd." },
 ];
 
 export const howItWorks: HowItWorksStep[] = [
@@ -135,24 +127,6 @@ export const aboutValues: AboutValue[] = [
     number: "03",
     title: "Community first",
     body: "We're a Sydney business, through and through. We support local growers, hire locally, and give back.",
-  },
-];
-
-export const teamMembers: TeamMember[] = [
-  {
-    name: "Clara Nguyen",
-    role: "Founder & Head Baker",
-    imagePlaceholder: "#D4C4A8",
-  },
-  {
-    name: "James Okafor",
-    role: "Pastry Chef",
-    imagePlaceholder: "#C8B89C",
-  },
-  {
-    name: "Sophie Martin",
-    role: "Store Manager",
-    imagePlaceholder: "#D4B896",
   },
 ];
 

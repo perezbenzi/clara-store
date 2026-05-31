@@ -24,10 +24,12 @@ function StoreCard({
       transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
     >
       {/* Image area */}
-      <div
-        className="w-full aspect-[4/3] mb-4 overflow-hidden relative"
-        style={{ backgroundColor: store.imagePlaceholder }}
-      >
+      <div className="w-full aspect-[4/3] mb-4 overflow-hidden relative">
+        {store.imagePlaceholder.startsWith("#") ? (
+          <div className="w-full h-full" style={{ backgroundColor: store.imagePlaceholder }} />
+        ) : (
+          <img src={store.imagePlaceholder} alt={store.name} className="w-full h-full object-cover" />
+        )}
         <div className="absolute inset-0 bg-black/0 hover:bg-black/[0.08] transition-colors" />
       </div>
 

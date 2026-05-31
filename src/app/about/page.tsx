@@ -6,7 +6,10 @@ import MarqueeSection from "@/components/sections/MarqueeSection";
 import TeamSection from "@/components/sections/TeamSection";
 import AboutCta from "@/components/sections/AboutCta";
 import Footer from "@/components/layout/Footer";
-import { aboutValues, teamMembers } from "@/lib/data";
+import { aboutValues } from "@/lib/data";
+import { getTeamMembers } from "@/lib/db";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "About",
@@ -14,7 +17,9 @@ export const metadata: Metadata = {
     "The story behind Clara's Bakehouse — a Northern NSW bakery built on scratch baking, seasonal ingredients, and community.",
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const teamMembers = await getTeamMembers();
+
   return (
     <>
       <AboutHero />

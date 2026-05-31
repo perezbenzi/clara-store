@@ -7,10 +7,13 @@ interface TeamSectionProps {
 function MemberCard({ member }: { member: TeamMember }) {
   return (
     <div>
-      <div
-        className="w-full aspect-[3/4] mb-4"
-        style={{ backgroundColor: member.imagePlaceholder }}
-      />
+      <div className="w-full aspect-[3/4] mb-4 overflow-hidden">
+        {member.imagePlaceholder.startsWith("#") ? (
+          <div className="w-full h-full" style={{ backgroundColor: member.imagePlaceholder }} />
+        ) : (
+          <img src={member.imagePlaceholder} alt={member.name} className="w-full h-full object-cover" />
+        )}
+      </div>
       <p className="font-display uppercase text-ink text-[18px] mb-1">
         {member.name}
       </p>

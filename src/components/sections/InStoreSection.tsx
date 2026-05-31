@@ -24,11 +24,13 @@ function InStoreCard({
       animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
       transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
     >
-      {/* Image placeholder — 4:3 */}
-      <div
-        className="w-full aspect-[4/3]"
-        style={{ backgroundColor: item.imagePlaceholder }}
-      />
+      <div className="w-full aspect-[4/3] overflow-hidden">
+        {item.imagePlaceholder.startsWith("#") ? (
+          <div className="w-full h-full" style={{ backgroundColor: item.imagePlaceholder }} />
+        ) : (
+          <img src={item.imagePlaceholder} alt={item.name} className="w-full h-full object-cover" />
+        )}
+      </div>
       <div className="pt-4">
         <h3 className="font-display uppercase text-ink text-xl md:text-2xl mb-1">
           {item.name}

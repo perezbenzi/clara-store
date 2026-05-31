@@ -4,13 +4,15 @@ import ProductGrid from "@/components/sections/ProductGrid";
 import InStoreSection from "@/components/sections/InStoreSection";
 import Footer from "@/components/layout/Footer";
 import Button from "@/components/ui/Button";
-import { instoreItems } from "@/lib/data";
-import { getFlavours } from "@/lib/db";
+import { getFlavours, getInstoreItems } from "@/lib/db";
 
 export const revalidate = 3600;
 
 export default async function Home() {
-  const previewFlavours = (await getFlavours()).slice(0, 3);
+  const [previewFlavours, instoreItems] = await Promise.all([
+    getFlavours().then((f) => f.slice(0, 3)),
+    getInstoreItems(),
+  ]);
 
   return (
     <>

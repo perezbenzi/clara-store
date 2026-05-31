@@ -3,8 +3,7 @@ import ProductGrid from "@/components/sections/ProductGrid";
 import MarqueeSection from "@/components/sections/MarqueeSection";
 import InStoreSection from "@/components/sections/InStoreSection";
 import Footer from "@/components/layout/Footer";
-import { instoreItems } from "@/lib/data";
-import { getFlavours } from "@/lib/db";
+import { getFlavours, getInstoreItems } from "@/lib/db";
 
 export const metadata: Metadata = {
   title: "Flavours",
@@ -15,7 +14,10 @@ export const metadata: Metadata = {
 export const revalidate = 3600;
 
 export default async function FlavoursPage() {
-  const flavours = await getFlavours();
+  const [flavours, instoreItems] = await Promise.all([
+    getFlavours(),
+    getInstoreItems(),
+  ]);
   return (
     <>
       {/* Page header */}

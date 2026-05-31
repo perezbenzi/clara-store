@@ -2,7 +2,10 @@ import type { Metadata } from "next";
 import StoresGrid from "@/components/sections/StoresGrid";
 import OpeningSoon from "@/components/sections/OpeningSoon";
 import Footer from "@/components/layout/Footer";
-import { stores, openingSoon } from "@/lib/data";
+import { openingSoon } from "@/lib/data";
+import { getStores } from "@/lib/db";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Our Stores",
@@ -10,7 +13,8 @@ export const metadata: Metadata = {
     "Find Clara's Bakehouse in Byron Bay, Bangalow and Brunswick Heads.",
 };
 
-export default function StoresPage() {
+export default async function StoresPage() {
+  const stores = await getStores();
   return (
     <>
       {/* Page header */}
