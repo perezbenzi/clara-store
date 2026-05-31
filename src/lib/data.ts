@@ -158,7 +158,7 @@ export const teamMembers: TeamMember[] = [
 
 export const stores: Store[] = [
   {
-    id: 0,
+    id: 1,
     name: "Byron Bay",
     address: "12 Jonson Street, Byron Bay NSW 2481",
     googleMapsUrl:
@@ -166,7 +166,7 @@ export const stores: Store[] = [
     imagePlaceholder: "#C8B89C",
   },
   {
-    id: 1,
+    id: 2,
     name: "Bangalow",
     address: "24 Byron Street, Bangalow NSW 2479",
     googleMapsUrl:
@@ -174,7 +174,7 @@ export const stores: Store[] = [
     imagePlaceholder: "#B8C4A0",
   },
   {
-    id: 2,
+    id: 3,
     name: "Brunswick Heads",
     address: "8 Mullumbimbi Street, Brunswick Heads NSW 2483",
     googleMapsUrl:

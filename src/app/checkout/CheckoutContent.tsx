@@ -7,6 +7,7 @@ import { useCart } from "@/context/CartContext";
 import { stores } from "@/lib/data";
 import DateSelect, { type SelectedDate } from "@/components/ui/DateSelect";
 import Footer from "@/components/layout/Footer";
+import { placeOrder } from "./actions";
 
 const MONTH_NAMES = [
   "January", "February", "March", "April", "May", "June",
@@ -36,6 +37,7 @@ export default function CheckoutContent() {
   const [selectedStore, setSelectedStore] = useState(stores[0].id);
   const [selectedDate, setSelectedDate] = useState<SelectedDate | null>(null);
   const [error, setError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [placedStore, setPlacedStore] = useState(stores[0].id);
   const [placedDate, setPlacedDate] = useState<SelectedDate | null>(null);
@@ -46,7 +48,7 @@ export default function CheckoutContent() {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
   }
 
-  function handlePlaceOrder() {
+  async function handlePlaceOrder() {
     if (
       !form.firstName.trim() ||
       !form.lastName.trim() ||
@@ -60,7 +62,36 @@ export default function CheckoutContent() {
       setError("Please choose a collection date.");
       return;
     }
+
     setError("");
+    setSubmitting(true);
+
+    const mm = String(selectedDate.month + 1).padStart(2, "0");
+    const dd = String(selectedDate.day).padStart(2, "0");
+
+    const result = await placeOrder({
+      storeId: selectedStore,
+      customerName: `${form.firstName.trim()} ${form.lastName.trim()}`,
+      customerEmail: form.email.trim(),
+      customerPhone: form.phone.trim(),
+      collectionDate: `${selectedDate.year}-${mm}-${dd}`,
+      notes: form.notes.trim() || null,
+      items: items.map((item) => ({
+        flavour_id: item.id,
+        flavour_name: item.name,
+        quantity: item.quantity,
+        price: item.price,
+      })),
+      total: totalPrice,
+    });
+
+    setSubmitting(false);
+
+    if (result.error) {
+      setError(result.error);
+      return;
+    }
+
     setPlacedStore(selectedStore);
     setPlacedDate(selectedDate);
     clearCart();
@@ -304,10 +335,11 @@ export default function CheckoutContent() {
 
               <button
                 onClick={handlePlaceOrder}
-                className="w-full text-[10px] font-bold tracking-[2px] uppercase underline py-3.5 cursor-pointer"
+                disabled={submitting}
+                className="w-full text-[10px] font-bold tracking-[2px] uppercase underline py-3.5 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{ backgroundColor: "#111111", color: "#ffffff" }}
               >
-                Place Order
+                {submitting ? "Placing order…" : "Place Order"}
               </button>
 
               <p className="text-[10px] text-muted text-center mt-3 leading-relaxed">
