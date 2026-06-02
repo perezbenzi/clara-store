@@ -23,9 +23,10 @@ export interface OrderPayload {
 export async function placeOrder(
   payload: OrderPayload
 ): Promise<{ error: string | null }> {
-  console.log("[placeOrder] payload:", JSON.stringify(payload, null, 2));
+  console.log("[placeOrder] raw payload:", JSON.stringify(payload, null, 2));
 
-  const { data: orderId, error } = await supabase.rpc("place_order", {
+  // Log each RPC param with its runtime type so type mismatches are visible
+  const rpcParams = {
     p_store_id:        payload.storeId,
     p_customer_name:   payload.customerName,
     p_customer_email:  payload.customerEmail,
@@ -34,10 +35,28 @@ export async function placeOrder(
     p_notes:           payload.notes,
     p_total:           payload.total,
     p_items:           payload.items,
+  };
+  console.log("[placeOrder] rpc params types:", {
+    p_store_id:        typeof rpcParams.p_store_id,
+    p_customer_name:   typeof rpcParams.p_customer_name,
+    p_customer_email:  typeof rpcParams.p_customer_email,
+    p_customer_phone:  typeof rpcParams.p_customer_phone,
+    p_collection_date: typeof rpcParams.p_collection_date,
+    p_notes:           typeof rpcParams.p_notes,
+    p_total:           typeof rpcParams.p_total,
+    p_items:           `Array(${Array.isArray(rpcParams.p_items) ? rpcParams.p_items.length : "NOT_ARRAY"})`,
   });
+  console.log("[placeOrder] calling supabase.rpc('place_order') ...");
+
+  const { data: orderId, error } = await supabase.rpc("place_order", rpcParams);
 
   if (error) {
-    console.error("[placeOrder] rpc failed:", JSON.stringify(error, null, 2));
+    console.error("[placeOrder] rpc error message :", error.message);
+    console.error("[placeOrder] rpc error code    :", error.code);
+    console.error("[placeOrder] rpc error details :", error.details);
+    console.error("[placeOrder] rpc error hint    :", error.hint);
+    console.error("[placeOrder] rpc error status  :", (error as { status?: number }).status);
+    console.error("[placeOrder] full error object :", JSON.stringify(error, null, 2));
     return { error: "Something went wrong placing your order. Please try again." };
   }
 
