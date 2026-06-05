@@ -6,7 +6,7 @@ import Footer from "@/components/layout/Footer";
 import Button from "@/components/ui/Button";
 import { getProducts, getInstoreItems } from "@/lib/db";
 
-export const revalidate = 3600;
+export const revalidate = 180;
 
 export default async function Home() {
   const [previewProducts, instoreItems] = await Promise.all([

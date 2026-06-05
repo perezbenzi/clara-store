@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "Explore Clara's Bakehouse monthly specials — handcrafted cakes rotating with the seasons.",
 };
 
-export const revalidate = 3600;
+export const revalidate = 180;
 
 export default async function FlavoursPage() {
   const [products, instoreItems] = await Promise.all([

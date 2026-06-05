@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "Order Clara's Bakehouse cakes online and collect from your nearest store.",
 };
 
-export const revalidate = 3600;
+export const revalidate = 180;
 
 export default async function OrderPage() {
   const products = await getProducts();
