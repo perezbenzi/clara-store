@@ -13,8 +13,8 @@ declare
 begin
 
 -- Tenant
-insert into tenants (id, name, slug, owner_id)
-values (tid, 'Clara''s Bakehouse', 'claras-bakehouse', 'YOUR_AUTH_USER_UUID');
+insert into tenants (id, name, slug, owner_id, notification_email)
+values (tid, 'Clara''s Bakehouse', 'claras-bakehouse', 'YOUR_AUTH_USER_UUID', 'owner@example.com');
 
 -- Flavours
 insert into flavours (id, store_id, name, tag, price, description, image_url, active, sort_order) values

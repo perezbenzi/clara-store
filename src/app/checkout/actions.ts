@@ -1,6 +1,7 @@
 "use server";
 
 import { supabase } from "@/lib/supabase";
+import { sendNewOrderNotification } from "@/lib/email";
 
 export interface OrderItem {
   product_id: number;
@@ -48,7 +49,7 @@ export async function placeOrder(
   });
   console.log("[placeOrder] calling supabase.rpc('place_order') ...");
 
-  const { data: orderId, error } = await supabase.rpc("place_order", rpcParams);
+  const { data, error } = await supabase.rpc("place_order", rpcParams);
 
   if (error) {
     console.error("[placeOrder] rpc error message :", error.message);
@@ -60,6 +61,19 @@ export async function placeOrder(
     return { error: "Something went wrong placing your order. Please try again." };
   }
 
+  const result = data?.[0];
+  const orderId = result?.order_id;
+  const notificationEmail = result?.notification_email;
+
   console.log("[placeOrder] success, order id:", orderId);
+
+  if (notificationEmail && orderId) {
+    try {
+      await sendNewOrderNotification(notificationEmail, payload, orderId);
+    } catch (emailError) {
+      console.error("[placeOrder] failed to send merchant notification:", emailError);
+    }
+  }
+
   return { error: null };
 }
